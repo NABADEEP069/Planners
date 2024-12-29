@@ -13,7 +13,7 @@ interface EditTaskDialogProps {
 export function EditTaskDialog({ task, isOpen, onClose, onUpdate }: EditTaskDialogProps) {
   const [title, setTitle] = useState(task.title);
   const [startTime, setStartTime] = useState(task.start_time.slice(0, 16));
-  const [endTime, setEndTime] = useState(task.end_time.slice(0, 16));
+  const [endTime, setEndTime] = useState(task.end_time ? task.end_time.slice(0, 16) : '');
   const [priority, setPriority] = useState<TaskPriority>(task.priority);
   const [loading, setLoading] = useState(false);
 

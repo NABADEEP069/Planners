@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Task, TaskFilter } from '../types/task';
 import { supabase } from '../lib/supabase';
 import { format } from 'date-fns';
@@ -67,11 +67,10 @@ export function TaskList({ filter, sortBy = 'start_time', sortOrder = 'asc' }: T
     ));
   };
 
-  const handleTaskUpdate = (updatedTask: Task) => {
-    setTasks(tasks.map(task => 
-      task.id === updatedTask.id ? updatedTask : task
+  function handleTaskUpdate(updatedTask: Task) {
+    setTasks(tasks.map(task => task.id === updatedTask.id ? updatedTask : task
     ));
-  };
+  }
 
   if (loading) {
     return (
@@ -100,7 +99,7 @@ export function TaskList({ filter, sortBy = 'start_time', sortOrder = 'asc' }: T
                   </p>
                   <p className="text-sm text-gray-600 flex items-center">
                     <span className="w-20">End:</span>
-                    <span className="font-medium">{format(new Date(task.end_time), 'PPp')}</span>
+                    <span className="font-medium">{task.end_time ? format(new Date(task.end_time), 'PPp') : 'N/A'}</span>
                   </p>
                   <p className="text-sm text-gray-600 flex items-center">
                     <span className="w-20">Priority:</span>
