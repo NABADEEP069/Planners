@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../lib/auth';
+import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 export function AuthForm() {
@@ -8,6 +9,7 @@ export function AuthForm() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const { signIn, signUp } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,6 +29,7 @@ export function AuthForm() {
       } else {
         await signIn(email, password);
         toast.success('Signed in successfully!');
+        navigate('/dashboard');
       }
     } catch (error) {
       toast.error(error instanceof Error ? error.message : 'Authentication failed');

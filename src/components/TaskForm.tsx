@@ -52,51 +52,52 @@ export function TaskForm({ onSuccess }: TaskFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <label className="block text-sm font-medium text-gray-700">Title</label>
+        <label className="block text-sm font-medium text-gray-700 mb-2">Title</label>
         <input
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+          className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary transition-colors duration-200"
+          placeholder="Enter task title"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Start Time</label>
+        <label className="block text-sm font-medium text-gray-700 mb-2">Start Time</label>
         <input
           type="datetime-local"
           value={startTime}
           onChange={(e) => setStartTime(e.target.value)}
           required
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+          className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary transition-colors duration-200"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">End Time</label>
+        <label className="block text-sm font-medium text-gray-700 mb-2">End Time</label>
         <input
           type="datetime-local"
           value={endTime}
           onChange={(e) => setEndTime(e.target.value)}
           required
           min={startTime}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+          className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary transition-colors duration-200"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Priority</label>
+        <label className="block text-sm font-medium text-gray-700 mb-2">Priority</label>
         <select
           value={priority}
           onChange={(e) => setPriority(Number(e.target.value) as TaskPriority)}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+          className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary transition-colors duration-200"
         >
           {[1, 2, 3, 4, 5].map((p) => (
             <option key={p} value={p}>
-              {p}
+              Priority {p}
             </option>
           ))}
         </select>
@@ -105,7 +106,7 @@ export function TaskForm({ onSuccess }: TaskFormProps) {
       <button
         type="submit"
         disabled={loading}
-        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
+        className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02]"
       >
         {loading ? 'Creating...' : 'Create Task'}
       </button>
