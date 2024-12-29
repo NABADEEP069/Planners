@@ -2,7 +2,7 @@ import { Navigation } from '../components/Navigation';
 import { TaskList } from '../components/TaskList';
 import { TaskForm } from '../components/TaskForm';
 import { useState } from 'react';
-import { TaskFilter } from '../types/task';
+import { TaskFilter, TaskPriority } from '../types/task';
 
 export function TaskListPage() {
   const [filter, setFilter] = useState<TaskFilter>({});
@@ -20,19 +20,21 @@ export function TaskListPage() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Task List</h2>
                 
                 <div className="flex flex-wrap gap-4 mb-8">
-                  <select
-                    value={filter.priority || ''}
-                    onChange={(e) => setFilter({
-                      ...filter,
-                      priority: e.target.value ? Number(e.target.value) : undefined
-                    })}
-                    className="rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary transition-colors duration-200"
-                  >
-                    <option value="">All Priorities</option>
-                    {[1, 2, 3, 4, 5].map((p) => (
-                      <option key={p} value={p}>Priority {p}</option>
-                    ))}
-                  </select>
+                // ...existing code...
+<select
+  value={filter.priority || ''}
+  onChange={(e) => setFilter({
+    ...filter,
+    priority: e.target.value ? (Number(e.target.value) as TaskPriority) : undefined
+  })}
+  className="rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary transition-colors duration-200"
+>
+  <option value="">All Priorities</option>
+  {[1, 2, 3, 4, 5].map((p) => (
+    <option key={p} value={p}>Priority {p}</option>
+  ))}
+</select>
+// ...existing code...
 
                   <select
                     value={filter.status || ''}
